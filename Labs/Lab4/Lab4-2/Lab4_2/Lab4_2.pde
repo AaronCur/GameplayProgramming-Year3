@@ -26,6 +26,8 @@ void setup() {
   radius = diameter / 2;
   
   
+  
+  
 
 }
 
@@ -53,8 +55,9 @@ void collision()
  
 void draw() {
   
-  collision ();
   timer = millis();
+  collision ();
+  
   
   if(collision == true)
   {
