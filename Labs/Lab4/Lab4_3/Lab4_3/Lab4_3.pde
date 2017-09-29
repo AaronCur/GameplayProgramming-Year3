@@ -8,7 +8,7 @@ void setup() {
   
   for(int i = 0; i < balls.length; i++)
   {
-    balls[i] = new Ball(random(30, 300),30,20);
+    balls[i] = new Ball((random(0, 640)),(random(0,360)),20);
   }
 
 }
