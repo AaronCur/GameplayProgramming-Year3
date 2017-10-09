@@ -23,9 +23,9 @@ void draw() {
   }
  
   //m.applyForce(wind);
-  m.update();
-  m.checkEdges();
-  m.display();
+ // m.update();
+ // m.checkEdges();
+  //m.display();
   
   c.display();
   
