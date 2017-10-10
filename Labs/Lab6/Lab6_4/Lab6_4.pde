@@ -4,7 +4,7 @@ PowerBar pb;
 boolean fire = true;
 boolean gravityReady = false;
 Float force = 0f;
-Float maxForce = 30.0f;
+Float maxForce = 40.0f;
 void setup() {
   size(1200, 1000);
   smooth();
@@ -35,7 +35,7 @@ void keyPressed()
   //To fire projectile
   if (key == 32)
   {
-    if (fire == true)
+    if (fire == true && force > 0)
     {
       m.applyForce();
       fire = false; 
@@ -71,7 +71,7 @@ void keyPressed()
      {
         if(force <= maxForce)
         {
-          force+=0.3;
+          force+=0.4;
           pb.increase();
         }
         
@@ -83,7 +83,7 @@ void keyPressed()
      {
         if (force > 0)
         {
-          force-=0.3;
+          force-=0.4;
           pb.decrease();
           
         }
