@@ -20,8 +20,8 @@ class Goal{
    {
      
      
-     if(location.x <= p.location2.x && location2.x >= p.location.x &&
-         location.y >= p.location.y && location2.y >= p.location.y)
+    if(location.x <= p.location.x + p.m_width && location.x + m_width >= p.location.x &&
+        location.y <= p.location.y + p.m_height & location.y + m_height >= p.location.y )
       {
       
         collision = true;

@@ -16,7 +16,24 @@ class Level{
     m_levelWidth = 1777f;
    
   }
+   void collision(Player p)
+   {
+     if(p.location.y + p.m_height < groundLocation.y)
+     {
+       
+       p.jump = true;
+      
+       
+      }
+      
+   p.gravityActive = false;
+       p.velocity.y = 0;
+       p.location.y = groundLocation.y - p.m_height;
    
+   
+   
+   
+   }
    
    void display() {
     stroke(0);

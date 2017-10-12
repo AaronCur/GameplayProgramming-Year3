@@ -1,6 +1,5 @@
 class Player {
 
-  float pixelsToMeters = 20;
   PVector gravity;
   PVector acceleration;
   PVector initialVelocity;
@@ -11,11 +10,10 @@ class Player {
   PVector velocity;
   float m_width;
   float m_height;
-  float m_speed;
-  
   float mass = 1;
-  boolean gravityActive = true;
-  boolean jump = false;
+  boolean gravityActive = false;
+  boolean jump = true;
+  boolean objectCollide = false;
   
   Player() {
     
@@ -27,11 +25,10 @@ class Player {
     velocity = new PVector(0,0);
     
     //pixelsToMeters = 20;
-    gravity = new PVector(0.0f, 0.5);
+    gravity = new PVector(0.0f, 0.8);
     acceleration =new PVector(0.0f, 0.0f);
     initialVelocity =new PVector (0.0f, -20.0f);
     
-    m_speed = 1;
   }
   void applyForce(PVector force) {
     PVector f = PVector.div(force,mass);
@@ -39,40 +36,56 @@ class Player {
   }
   void update(Level l)
   {
-    location2.x = location.x + m_width + 2;
+    
     location2.y = location.y + m_height + 2;
     velocity.add(acceleration);
     location.add(velocity);
     
-    if(location.y + m_height < l.groundLocation.y)
-    {
-      jump = false;
-       if(gravityActive == true)
-         {
-           velocity.add(gravity);
-         
-         }
+   
+    
+  
+     if(location.y + m_height < l.groundLocation.y)
+     {
+       if(objectCollide == false)
+       {
+          p.jump = false;
+          gravityActive = true;
        
-      
-    
-    }
-    else
-    {
-      jump = true;
-      velocity.y = 0;
-    
-    }
-    
+       }
+
+      }
+      else
+      {
+        gravityActive = false;
+        velocity.y = 0;
+        location.y = l.groundLocation.y - m_height;
+        
+      }
+ //  p.gravityActive = false;
+      // p.velocity.y = 0;
+      // p.location.y = groundLocation.y - p.m_height;
+   
+  
+    if(objectCollide == false && gravityActive == true )
+     {
+          velocity.add(gravity);
+         
+     }
     
     
   }
   void jump()
   {
-    if(jump == true)
+    
+    if(velocity.y == 0)
     {
-      velocity.add(initialVelocity);
-   
+    
+        velocity.add(initialVelocity);
+    
     }
+      
+   
+    
     
     
   }
@@ -103,16 +116,18 @@ class Player {
   void moveRight()
   {
   
-    velocity.x = 5;
+    velocity.add(10,0);
     location.x = p.location.x + p.velocity.x;
+    location2.x = p.location.x + p.velocity.x;
     velocity.x = 0;
 
   }
   
   void moveLeft()
   {
-    velocity.x = -5;
+    velocity.add(-10,0);
     location.x = p.location.x  + p.velocity.x;
+    location2.x = p.location.x  + p.velocity.x;
     velocity.x = 0;
   }
 

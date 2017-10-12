@@ -18,14 +18,16 @@ void draw() {
  
   background(127);
 
-  o.display();
-  o.processCollision(p);
-  
+ 
   l.display();
   g.display();
   g.collision(p);
   p.update(l);
   p.display(g);
+  o.display();
+  o.checkCollision(p);
+  
+  
   
   
   
