@@ -44,6 +44,16 @@ class Obstacle{
    }
    void processCollision(Player P)
    {
+     checkCollision(P);
+     
+     if(case1 == true)
+     {
+       p.location.x = location.x - p.m_width;
+     
+     
+     
+     }
+     
    
    
    

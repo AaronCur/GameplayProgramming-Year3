@@ -16,7 +16,7 @@ void draw() {
   background(127);
 
   o.display();
-  o.collision(p);
+  o.processCollision(p);
   l.display();
   g.display();
   g.collision(p);
