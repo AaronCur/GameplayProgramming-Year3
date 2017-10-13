@@ -39,9 +39,11 @@ void keyPressed()
   if(key == CODED)
   {
       //Code to to move player left or right when its inside the boundaries
-      if (keyCode == RIGHT && p.location.x < 1777 - p.m_width )
+      if (keyCode == RIGHT && p.location.x < 1777 - p.m_width && p.keyDown == false )
      {
+       p.jumpRight = true;
        p.moveRight();
+       
      }
       if (keyCode == LEFT && p.location.x > 0)
      {
@@ -52,6 +54,29 @@ void keyPressed()
       if (keyCode == UP )
      {
        p.jump();
+     }
+     
+  }
+}
+
+void keyReleased()
+{
+ 
+ 
+  if(key == CODED)
+  {
+      //Code to to move player left or right when its inside the boundaries
+      if (keyCode == RIGHT )
+     {
+       p.jumpRight = false;
+       p.moveRight();
+       
+     }
+      if (keyCode == LEFT )
+     {
+       p.jumpLeft = false;
+       p.moveLeft();
+       
      }
      
   }

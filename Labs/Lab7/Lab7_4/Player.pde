@@ -3,8 +3,6 @@ class Player {
   PVector gravity;
   PVector acceleration;
   PVector initialVelocity;
-  
-  
   PVector location;
   PVector location2;
   PVector velocity;
@@ -13,7 +11,10 @@ class Player {
   float mass = 1;
   boolean gravityActive = false;
   boolean jump = true;
+  boolean jumpLeft = false;
+  boolean jumpRight = true;
   boolean objectCollide = false;
+  boolean keyDown = false;
   
   Player() {
     
@@ -25,9 +26,9 @@ class Player {
     velocity = new PVector(0,0);
     
     //pixelsToMeters = 20;
-    gravity = new PVector(0.0f, 0.8);
+    gravity = new PVector(0.0f, 0.9);
     acceleration =new PVector(0.0f, 0.0f);
-    initialVelocity =new PVector (0.0f, -20.0f);
+    initialVelocity =new PVector (0.0f, -25.0f);
     
   }
   void applyForce(PVector force) {
@@ -61,37 +62,38 @@ class Player {
         location.y = l.groundLocation.y - m_height;
         
       }
- //  p.gravityActive = false;
-      // p.velocity.y = 0;
-      // p.location.y = groundLocation.y - p.m_height;
-   
-  
+      
     if(objectCollide == false && gravityActive == true )
      {
           velocity.add(gravity);
          
      }
-    
-    
+     
+
+      
   }
   void jump()
   {
     
     if(velocity.y == 0)
     {
-    
         velocity.add(initialVelocity);
+    }
+ 
+  }
+  void jumpLeft()
+  {
+    if(jump == false)
+    {
+    
+    
     
     }
-      
-   
-    
-    
-    
+  
+  
+  
   }
-  
-  
-  
+ 
   
   //The stroke colour is darker than the fill to give it a 3D feel
   void display(Goal g) {
@@ -115,20 +117,34 @@ class Player {
    
   void moveRight()
   {
+    if(keyDown == true)
+    {
+      velocity.add(-15,0);
+      keyDown = false;
+    
+    }
+    
   
-    velocity.add(10,0);
-    location.x = p.location.x + p.velocity.x;
-    location2.x = p.location.x + p.velocity.x;
-    velocity.x = 0;
-
   }
   
   void moveLeft()
   {
-    velocity.add(-10,0);
-    location.x = p.location.x  + p.velocity.x;
-    location2.x = p.location.x  + p.velocity.x;
+    if(jumpLeft == false)
+    {
+      
+    velocity.add(-15,0);
+    //jumpLeft ==tr
+    //location.x = p.location.x  + p.velocity.x;
+    //location2.x = p.location.x  + p.velocity.x;
+ 
+    }
+    else
+    {
+      
     velocity.x = 0;
+    
+    }
+    
   }
 
 }

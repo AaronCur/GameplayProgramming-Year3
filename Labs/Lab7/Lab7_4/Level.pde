@@ -12,7 +12,6 @@ class Level{
     m_groundHeight = 334f;
     ceilLocation = new PVector(0, 0);
     m_ceilHeight = 40f;
-
     m_levelWidth = 1777f;
    
   }
@@ -20,28 +19,22 @@ class Level{
    {
      if(p.location.y + p.m_height < groundLocation.y)
      {
-       
+   
        p.jump = true;
-      
-       
-      }
-      
-   p.gravityActive = false;
+     
+     }
+ 
+       p.gravityActive = false;
        p.velocity.y = 0;
        p.location.y = groundLocation.y - p.m_height;
-   
-   
-   
-   
+
    }
    
    void display() {
     stroke(0);
     strokeWeight(2);
     fill(0);
-    
     rect(ceilLocation.x,ceilLocation.y,m_levelWidth,m_ceilHeight);
-    
     rect(groundLocation.x,groundLocation.y,m_levelWidth,m_groundHeight);
    
     
