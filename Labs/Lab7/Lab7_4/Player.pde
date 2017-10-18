@@ -11,10 +11,8 @@ class Player {
   float mass = 1;
   boolean gravityActive = false;
   boolean jump = true;
-  boolean jumpLeft = false;
-  boolean jumpRight = true;
   boolean objectCollide = false;
-  boolean keyDown = false;
+  float maxForce = 10.0f;
   
   Player() {
     
@@ -81,20 +79,7 @@ class Player {
     }
  
   }
-  void jumpLeft()
-  {
-    if(jump == false)
-    {
-    
-    
-    
-    }
-  
-  
-  
-  }
- 
-  
+
   //The stroke colour is darker than the fill to give it a 3D feel
   void display(Goal g) {
    
@@ -117,33 +102,22 @@ class Player {
    
   void moveRight()
   {
-    if(keyDown == true)
+    if(velocity.x < maxForce)
     {
-      velocity.add(-15,0);
-      keyDown = false;
+       velocity.add(10,0);
     
     }
-    
   
   }
   
   void moveLeft()
   {
-    if(jumpLeft == false)
-    {
-      
-    velocity.add(-15,0);
-    //jumpLeft ==tr
-    //location.x = p.location.x  + p.velocity.x;
-    //location2.x = p.location.x  + p.velocity.x;
- 
-    }
-    else
-    {
-      
-    velocity.x = 0;
     
-    }
+     if(velocity.x > -maxForce)
+     {
+       velocity.add(-10,0);
+    
+     }
     
   }
 

@@ -45,7 +45,7 @@ class Obstacle{
        if(p.location.x + p.m_width >= location.x  && p.location.x + p.m_width < location.x + 5 && p.location.y + p.m_height > location.y)
        {
          p.velocity.x = 0;
-         p.location.x = location.x - p.m_width;
+         p.location.x = location.x - p.m_width ;
        
        }
        else if (p.location.x <= location.x + m_width && p.location.x + p.m_width > location.x + m_width + 5 && p.location.y + p.m_height > location.y)
