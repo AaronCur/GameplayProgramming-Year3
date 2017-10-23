@@ -17,7 +17,7 @@ class Level{
     w = w_;
     h = h_;
     BodyDef bd= new BodyDef();
-    bd.type = BodyType.KINEMATIC;
+    bd.type = BodyType.STATIC;
     bd.position.set(box2d.coordPixelsToWorld(x,y));
     body = box2d.createBody(bd);
     
@@ -28,7 +28,14 @@ class Level{
     
     ps.setAsBox(box2dW,box2dH);
     
-    body.createFixture(ps , 1);
+     FixtureDef fd = new FixtureDef();
+    fd.shape = ps;
+    fd.density = 1;
+    fd.friction = 0.0;
+    fd.restitution = 0;
+    
+    //Attatch the shape to the body with the fixture
+    body.createFixture(fd);
     
    
   }
@@ -37,11 +44,12 @@ class Level{
    
      
     stroke(0);
-    strokeWeight(2);
+    strokeWeight(0);
     fill(0);
     rectMode(CENTER);
     rect(x,y,w,h);
-    
+    print(y);
+    print("\n");
    
   }
   

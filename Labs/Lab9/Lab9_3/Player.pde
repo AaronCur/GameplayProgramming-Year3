@@ -21,6 +21,7 @@ class Player  {
     
     BodyDef bd = new BodyDef();
     bd.type = BodyType.DYNAMIC;
+    bd.bullet = true;
     bd.position.set(box2d.coordPixelsToWorld(x,y));
     body = box2d.createBody(bd);
     
@@ -40,6 +41,7 @@ class Player  {
     //Attatch the shape to the body with the fixture
     body.createFixture(fd);
     
+    
   }
  
 
@@ -51,7 +53,8 @@ class Player  {
     pushMatrix();
    // using the vec2 postion and float angle to translate and rotate the recatngle
     translate(pos.x,pos.y);
-
+    print(pos.x ,pos.y);
+    print("\n");
     fill(255,0,0);
     stroke(150,0,0);
     strokeWeight(2);
@@ -63,14 +66,14 @@ class Player  {
   //ApplyForce() applies a force inastantly 
   //However ApplyImpulse applies the force instantly 
   void moveLeft(){
-    Vec2 moveLeft = new Vec2(-20,body.getLinearVelocity().y);
+    Vec2 moveLeft = new Vec2(-30,body.getLinearVelocity().y);
     body.setLinearVelocity(moveLeft);
     
     
   }
   void moveRight(){
     
-    Vec2 moveRight = new Vec2(20,body.getLinearVelocity().y);
+    Vec2 moveRight = new Vec2(30,body.getLinearVelocity().y);
     body.setLinearVelocity(moveRight);
   }
  
@@ -82,12 +85,17 @@ class Player  {
 
   void moveUp(){
     
-    Vec2 vel = body.getLinearVelocity();
+    if(body.getLinearVelocity().y == 0)
+    {
+      Vec2 vel = body.getLinearVelocity();
     float desiredVel = 100;
     float velChange = desiredVel - vel.y;
     float impulse = body.getMass() * velChange;
     Vec2 apply = new Vec2 (0, impulse);
     body.applyLinearImpulse(apply,body.getWorldCenter(),true);
+    
+    }
+    
   }
   void applyForce(Vec2 force) 
   {

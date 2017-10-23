@@ -23,7 +23,14 @@ class Obstacle{
     
     ps.setAsBox(box2dW,box2dH);
     
-    body.createFixture(ps , 1);
+     FixtureDef fd = new FixtureDef();
+    fd.shape = ps;
+    fd.density = 1;
+    fd.friction = 0.0;
+    fd.restitution = 0;
+    
+    //Attatch the shape to the body with the fixture
+    body.createFixture(fd);
     
    
   }
@@ -32,7 +39,7 @@ class Obstacle{
    
      
     stroke(0);
-    strokeWeight(2);
+    strokeWeight(0);
     fill(0);
     rectMode(CENTER);
     rect(x,y,w,h);
