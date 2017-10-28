@@ -4,6 +4,7 @@ class Goal{
   
   float x,y;
   float w,h;
+ 
   
   Goal(float x_, float y_, float w_, float h_) {
     
@@ -23,11 +24,23 @@ class Goal{
     
     ps.setAsBox(box2dW,box2dH);
     
-    body.createFixture(ps , 1);
+    FixtureDef fd = new FixtureDef();
+    fd.isSensor = true;
+    fd.shape = ps;
+    fd.density = 1;
+    fd.friction = 0.0;
+    fd.restitution = 0;
+    
+    body.createFixture(fd);
+    
+     // "this" refers to this Particle object.
+    // We are telling the Box2D Body to store a
+    // reference to this Particle that we can
+    // access later.
+    body.setUserData(this);  
     
    
   }
-   
    void display() {
    
      
