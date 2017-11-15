@@ -5,21 +5,22 @@ class Hammer{
   float x,y;
   float w,h;
   float w2,h2;
- 
+  Vec2 offset;
   
   Hammer(float x_, float y_) {
     
     x = x_;
     y = y_;
-    w = 100;
-    h = 100;
-    w2 = w / 5;
-    h2=h;
-    Vec2 offset = new Vec2(0,h);
-    offset = box2d.vectorPixelsToWorld(offset);
+    w = 150;
+    h = 150;
+    w2 = 40;
+    h2 = 300;
+    offset = new Vec2(0,2000);
+    offset.x = box2d.scalarPixelsToWorld(offset.x);
+    offset.y = box2d.scalarPixelsToWorld(offset.y);
     
     BodyDef bd = new BodyDef();
-    bd.type = BodyType.DYNAMIC;
+    bd.type = BodyType.STATIC;
     bd.position.set(box2d.coordPixelsToWorld(x,y));
     body = box2d.createBody(bd);
     
@@ -28,17 +29,11 @@ class Hammer{
     float box2dH1 = box2d.scalarPixelsToWorld(h / 2);
     ps1.setAsBox(box2dW1,box2dH1);
     
-    
-    Vec2[] vertices = new Vec2[4];
-    vertices[0] = box2d.vectorPixelsToWorld(new Vec2(-10 + offset.x, -10 + offset.y));
-    vertices[1] = box2d.vectorPixelsToWorld(new Vec2(-10 + offset.x, 50 + offset.y));
-    vertices[2] = box2d.vectorPixelsToWorld(new Vec2(10 + offset.x, 50 + offset.y));
-    vertices[3] = box2d.vectorPixelsToWorld(new Vec2(10 + offset.x, 10 + offset.y));
-    
      // Define a polygon (this is what we use for a rectangle)
     PolygonShape ps2 = new PolygonShape();
-    ps2.set(vertices, vertices.length);
-
+    float box2dW2 = box2d.scalarPixelsToWorld(w2 / 2);
+    float box2dH2 = box2d.scalarPixelsToWorld(h2 / 2);
+    ps2.setAsBox(box2dW2 + box2d.scalarPixelsToWorld(offset.x),box2dH2 + box2d.scalarPixelsToWorld(offset.y));
     
     body.createFixture(ps1, 1.0);
     body.createFixture(ps2, 1.0);
@@ -67,6 +62,7 @@ class Hammer{
     strokeWeight(2);
 
     rect(0,0,w,h);
+    rect(offset.x,offset.y,w2,h2);
     //rect(0,-h/6,w,h);
     popMatrix();
     
