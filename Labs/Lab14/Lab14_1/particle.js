@@ -4,14 +4,14 @@ class Particle
   *constructor Function to creat instances of TouchTest
   *
   */
-  constructor(_locationX,_locationY)
+  constructor(_locationX, _locationY)
   {
      this.location = [];
      this.location.x= _locationX;
      this.location.y = _locationY;
      this.velocity = [];
-     this.velocity.x = Math.floor(Math.random() * 10);
-     this.velocity.y = Math.floor(Math.random() * 10);
+     this.velocity.x = Math.floor(Math.random() * 20) -10 ;
+     this.velocity.y = (Math.random() * 4) - 2 ;
      this.acceleration = []
      this.acceleration.x = 0;
      this.acceleration.y = 0.05;
@@ -20,8 +20,10 @@ class Particle
   }
   run()
   {
+
     this.update();
-    this.display();
+    this.render();
+
   }
   update()
   {
@@ -32,13 +34,12 @@ class Particle
 
     //this.lifespan -= 2.0;
   }
-  display()
+  render()
   {
     var canvas = document.getElementById('mycanvas');
     var ctx = canvas.getContext('2d');
-    ctx.clearRect(0,0,canvas.width, canvas.height);
 
-    var R = 18;
+    var R = 7;
     ctx.beginPath();
     ctx.arc(this.location.x, this.location.y, R, 0, 2 * Math.PI, false);
     ctx.lineWidth = 4;

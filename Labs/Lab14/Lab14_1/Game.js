@@ -11,9 +11,13 @@ class Game
 
     for(var i = 0; i < 100; i++)
     {
-      gameNs.particles.push(new Particle(300,50));
-    }
+      gameNs.particles.push(new Particle(500,100));
+   }
+  // gameNs.particles[0].location.x = 200;
+  // gameNs.particles[0].location.y = 100;
 
+  // gameNs.particles[1].location.x = 300;
+  // gameNs.particles[1].location.y = 100;
   }
 
   initWorld()
@@ -26,11 +30,17 @@ class Game
 
   update()
   {
+    var canvas = document.getElementById('mycanvas');
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,canvas.width, canvas.height);
     window.requestAnimationFrame(gameNs.game.update);
     for(var i =0; i < 100; i++)
     {
       gameNs.particles[i].run();
+
     }
+
+
   }
 
 
